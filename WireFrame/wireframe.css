@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-content: space-between;
+}
+
+h1 {
+  margin: 0;
+  padding: 3em;
+  background-color: lightgray;
+}
+
+p {
+  margin: 0;
+  padding: 3em;
+  background-color: gray;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 30%;
+}
+
+input {
+  vertical-align: middle;
+}
+
+label {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+img {
+  width: 50%;
+}
