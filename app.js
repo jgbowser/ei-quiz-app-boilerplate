@@ -56,3 +56,41 @@ const store = {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+
+
+//Start screen with button to start quiz
+//at least 5 questions 1 at a time
+//can't skip questions
+//see question # on each question screen
+//display correct/incorrect screen based on answer show total correct and incorrect questions
+//overall score at end of quiz correct/incorrect
+// ability to restart quiz
+
+
+//main event handler//
+
+$('main')
+
+
+
+
+
+
+
+
+
+
+function executeQuizApp() {
+function startScreenTemplate() {};
+function questionScreenTemplate() {};
+function feedbackScreenTemplate() {};
+function endScreenTemplate() {};
+function renderScreen() {};
+};
+
+
+
+
+
+
+$(executeQuizApp);
