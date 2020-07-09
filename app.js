@@ -108,14 +108,13 @@ function questionScreenTemplate(questionNumber) {
   `];
 }
 
-function feedbackScreenTemplate() {
+function feedbackScreenTemplate(questionNumber, isCorrect) {
   //this function creates the template for the feedback screen displayed after each question is answered
   //hands the template to renderScreen 
   return `
     <div>
-      <h1>Wrong</h1>
-      <p><img src="/red_x.png" alt="Red X"></p>
-      <h3>The correct answer is: bla</h3>
+      <p><img src="/${isCorrect ? 'green_check.jpg' : 'red_x.png'}" alt=${isCorrect ? 'Green Checkmark' : 'Red X'}></p>
+      <h3>The correct answer is: ${store.questions[questionNumber].correctAnswer}</h3>
       <div>
         <h2>Score:</h3>
         <h4>Right: 3</h4>
@@ -123,7 +122,12 @@ function feedbackScreenTemplate() {
       </div>
       <a href='end_game_screen.html'><button>Next</button></a>
     </div>
-  `;
+  `,
+  `
+    <header
+      <h1>${isCorrect ? 'Correct!' : 'Wrong! :-('}</h1>
+    </header>
+  `];
 }
 
 function endScreenTemplate() {
