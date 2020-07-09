@@ -52,7 +52,6 @@ input {
   vertical-align: middle;
 }
 
-label {
 button {
   display: flex;
   justify-content: space-evenly;
