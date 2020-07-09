@@ -75,8 +75,8 @@ function startScreenTemplate() {
   //provides HTML template to initial render
   //This might be unnecessary? could just define initialRender with the start screen HTML because intial render will only ever render the start screen which is static
   return [`
-    <div>
-      <h3>This quiz will test you on strand or obscure facts you might not have known</h3>
+    <div class='start-screen-text'>
+      <h3>This quiz will test you on strange or obscure facts you might not have known</h3>
       <button class='new-game-button'>New Game</button>
     </div>
   `,
