@@ -135,4 +135,30 @@ img {
   align-self: center;
   margin-bottom: 10px;
   padding: 0;
+  max-width: 112px;
+}
+
+/* Media Queries */
+@media all and (min-width: 800px) {
+  form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 800px;
+    justify-content: center;
+  }
+
+  form button {
+    width: 45%;
+    display: inline-flex;
+    margin: 100px 0px;
+  }
+
+  .new-game-button,
+  .button-next,
+  .endgame-button {
+    width: 50%;
+    align-self: center;
+
+  }
+
 }
