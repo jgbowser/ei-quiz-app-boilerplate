@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Example store structure
  */
@@ -74,24 +76,69 @@ const store = {
 //}
 
 function startScreenTemplate() {
- //provides HTML template to initial render
- //This might be unnecessary? could just define initialRender with the start screen HTML because intial render will only ever render the start screen which is static
+  //provides HTML template to initial render
+  //This might be unnecessary? could just define initialRender with the start screen HTML because intial render will only ever render the start screen which is static
+  return `
+    <div>
+      <h1>Shall we play a game?</h1>
+      <p>Basic details/intro about the quiz.</p>
+      <button>New Game</button>
+    </div>
+  `;
 }
 
 function questionScreenTemplate() {
   //this function creates the template for the question strings 
   //hands template off to the render screen function
   //probably need to create a seperate function to retrieve correct item <------
+  return `
+    <div>
+      <h1>Question 2 of 5</h1>
+      <h3>What's your name?</h3>
+      <form>
+        <label for='answerOne'><input type='radio' id='answerOne' name='name' value='Bob'>Bob</label>
+        <label for='answerTwo'><input type='radio' id='answerTwo' name='name' value='John'>John</label>
+        <label for='answerThree'><input type='radio' id='answerThree' name='name' value='Gill'>Gill</label>
+        <label for='answerFour'><input type='radio' id='answerFour' name='name' value='Jack'>Jack</label>
+      </form>
+      <a href='/feedback_screen.html'><button>Submit</button></a>
+    </div>
+  `;
 }
 
 function feedbackScreenTemplate() {
   //this function creates the template for the feedback screen displayed after each question is answered
   //hands the template to renderScreen 
+  return `
+    <div>
+      <h1>Wrong</h1>
+      <p><img src="/red_x.png" alt="Red X"></p>
+      <h3>The correct answer is: bla</h3>
+      <div>
+        <h2>Score:</h3>
+        <h4>Right: 3</h4>
+        <h4>Wrong: 5</h4>
+      </div>
+      <a href='end_game_screen.html'><button>Next</button></a>
+    </div>
+  `;
 }
 
 function endScreenTemplate() {
   //this function creates the template for the end scree
   //passes template to render screen function
+  return `
+    <div>
+      <h1>Results</h1>
+      <p><img src="/finished_.jpg" alt="Red X"></p>
+      <div>
+        <h2>Score:</h3>
+        <h4>Right: 3</h4>
+        <h4>Wrong: 5</h4>
+      </div>
+      <a href='index.html'><button>New Game</button></a>
+    </div>
+  `;
 }
 
 function renderScreen() {
@@ -109,13 +156,13 @@ function renderScreen() {
 
 
 function executeQuizApp() {
-initialRender();
-startScreenTemplate();
-questionScreenTemplate();
-feedbackScreenTemplate();
-endScreenTemplate();
-renderScreen();
-};
+  initialRender();
+  startScreenTemplate();
+  questionScreenTemplate();
+  feedbackScreenTemplate();
+  endScreenTemplate();
+  renderScreen();
+}
 
 
 
