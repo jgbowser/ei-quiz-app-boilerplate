@@ -1,38 +1,6 @@
 'use strict';
 
 /**
- * Example store structure
- */
-const store = {
-  // 5 or more questions are required
-  questions: [
-    {
-      question: 'What color is broccoli?',
-      answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
-      ],
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What is the current year?',
-      answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
-      ],
-      correctAnswer: '2019'
-    }
-  ],
-  quizStarted: false,
-  questionNumber: 0,
-  score: 0,
-};
-
-/**
  * 
  * Technical requirements:
  * 
@@ -68,7 +36,63 @@ const store = {
 //overall score at end of quiz correct/incorrect
 // ability to restart quiz
 
-
+const store = {
+  questions: [
+    {
+      question: 'The average person does what 13 times a day?',
+      answers: [
+        'Sneeze',
+        'Use the restroom',
+        'Laughs',
+        'Swear'
+      ],
+      correctAnswer: 'Laughs'
+    },
+    {
+      question: 'In Texas it\'s illegal to swear in front of a what?',
+      answers: [
+        'A corpse',
+        'Children',
+        'Women',
+        'Police Officer'
+      ],
+      correctAnswer: 'A corpse'
+    },
+    {
+      question: 'In Kansas it\'s illegal to eat cherry pie with what?',
+      answers: [
+        'Spork',
+        'Your Hands',
+        'Spinach',
+        'Ice Cream'
+      ],
+      correctAnswer: 'Ice Cream'
+    },
+    {
+      question: 'The average American does what 22 times a day?',
+      answers: [
+        'Swears',
+        'Posts a Tweet',
+        'Swallows a Bug',
+        'Open the Fridge'
+      ],
+      correctAnswer: 'Open the Fridge'
+    },
+    {
+      question: 'In Blythe, CA you can\'t wear cowboy boots unless you own at least 5 what?',
+      answers: [
+        'Head of Cattle',
+        'Guns',
+        'Acres of Land',
+        'Cowboy Hats'
+      ],
+      correctAnswer: 'Head of Cattle'
+    }
+  ],
+  quizStarted: false,
+  questionNumber: 0,
+  score: 0,
+};
 
 
 function startScreenTemplate() {
@@ -98,7 +122,6 @@ function questionScreenTemplate(questionNumber) {
         <button id='answerThree' name='name' value='${store.questions[questionNumber].answers[2]}'>${store.questions[questionNumber].answers[2]}</button>
         <button id='answerFour' name='name' value='${store.questions[questionNumber].answers[3]}'>${store.questions[questionNumber].answers[3]}</button>
       </form>
-      <a href='/feedback_screen.html'><button>Submit</button></a>
     </div>
   `,
   `
@@ -117,8 +140,8 @@ function feedbackScreenTemplate(questionNumber, isCorrect) {
       <h3>The correct answer is: ${store.questions[questionNumber].correctAnswer}</h3>
       <div>
         <h2>Score:</h3>
-        <h4>Right: 3</h4>
-        <h4>Wrong: 5</h4>
+        <h4>Right: ${store.score}</h4>
+        <h4>Wrong: ${store.questionNumber - store.score}</h4>
       </div>
       <a href='end_game_screen.html'><button>Next</button></a>
     </div>
@@ -133,18 +156,22 @@ function feedbackScreenTemplate(questionNumber, isCorrect) {
 function endScreenTemplate() {
   //this function creates the template for the end scree
   //passes template to render screen function
-  return `
+  return [`
     <div>
-      <h1>Results</h1>
-      <p><img src="/finished_.jpg" alt="Red X"></p>
+      <p><img src="/finished_.jpg" alt="Checkered Flags Finish Line"></p>
       <div>
         <h2>Score:</h3>
-        <h4>Right: 3</h4>
-        <h4>Wrong: 5</h4>
+        <h4>Right: ${store.score}</h4>
+        <h4>Wrong: ${store.questionNumber - store.score}</h4>
       </div>
       <a href='index.html'><button>New Game</button></a>
     </div>
-  `;
+  `,
+  `
+    <header
+      <h1>Your Results</h1>
+    </header>
+  `];
 }
 
 
