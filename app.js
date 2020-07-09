@@ -102,7 +102,7 @@ function startScreenTemplate() {
   return [`
     <div class='start-screen-text'>
       <h3>This quiz will test you on strange or obscure facts you might not have known</h3>
-      <button class='js-button-new-game'>New Game</button>
+      <button class='js-button-new-game new-game-button'>New Game</button>
     </div>
   `,
   `
@@ -127,7 +127,7 @@ function questionScreenTemplate(questionNumber) {
   `,
   `
     <header>
-      <h1>Question ${questionNumber + 1} of ${store.questions.length}</h1>
+      <h1 class='question-header'>Question ${questionNumber + 1} of ${store.questions.length}</h1>
     </header>
   `];
 }
@@ -188,11 +188,8 @@ function renderScreen(template) {
   $('main').html(template[0]);
 }
 
-// Support function.
 
-function getQuestion(questionNumber) {
-  return null;
-}
+
 
 // Event handler functions.
 
@@ -204,7 +201,7 @@ function eventHandler() {
 }
 
 function eventNewGame(){
-  $('body').on('click', '.js-button-new-game', event => {
+  $('body').on('click', '.js-button-new-game', () => {
     console.log('New game button was clicked');
     renderScreen(questionScreenTemplate(store.questionNumber));
     store.quizStarted = true;
@@ -214,14 +211,14 @@ function eventNewGame(){
 function eventSubmitAnwser() {
   $('body').on('click', '.js-button-answer', event => {
     event.preventDefault();
-    let userAnwser = $(event.target).attr('value')
+    let userAnwser = $(event.target).attr('value');
     console.log(`Clicked an anwser button: ${$(event.target).attr('value')}`);
     renderScreen(feedbackScreenTemplate(store.questionNumber, userAnwser === store.questions[store.questionNumber].correctAnswer));
   });
 }
 
 function eventNext() {
-  $('body').on('click', '.js-button-next', event => {
+  $('body').on('click', '.js-button-next', () => {
     console.log('Clicked next button');
     store.questionNumber++;
     if(store.questionNumber === store.questions.length) {
@@ -233,7 +230,7 @@ function eventNext() {
 }
 
 function eventRestart() {
-  $('body').on('click', '.js-button-restart', event => {
+  $('body').on('click', '.js-button-restart', () => {
     store.questionNumber = 0;
     store.quizStarted = false;
     store.score = 0;
