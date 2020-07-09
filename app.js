@@ -94,6 +94,7 @@ const store = {
   score: 0,
 };
 
+// Template generation functions.
 
 function startScreenTemplate() {
   //provides HTML template to initial render
@@ -101,7 +102,7 @@ function startScreenTemplate() {
   return [`
     <div class='start-screen-text'>
       <h3>This quiz will test you on strange or obscure facts you might not have known</h3>
-      <button class='new-game-button'>New Game</button>
+      <button class='js-button-new-game'>New Game</button>
     </div>
   `,
   `
@@ -117,10 +118,10 @@ function questionScreenTemplate(questionNumber) {
     <div>
       <h3>${store.questions[questionNumber].question}</h3>
       <form>
-        <button id='answerOne' name='name' value='${store.questions[questionNumber].answers[0]}'>${store.questions[questionNumber].answers[0]}</button>
-        <button id='answerTwo' name='name' value='${store.questions[questionNumber].answers[1]}'>${store.questions[questionNumber].answers[1]}</button>
-        <button id='answerThree' name='name' value='${store.questions[questionNumber].answers[2]}'>${store.questions[questionNumber].answers[2]}</button>
-        <button id='answerFour' name='name' value='${store.questions[questionNumber].answers[3]}'>${store.questions[questionNumber].answers[3]}</button>
+        <button class='js-button-answer' id='answerOne' name='name' value='${store.questions[questionNumber].answers[0]}'>${store.questions[questionNumber].answers[0]}</button>
+        <button class='js-button-answer' id='answerTwo' name='name' value='${store.questions[questionNumber].answers[1]}'>${store.questions[questionNumber].answers[1]}</button>
+        <button class='js-button-answer' id='answerThree' name='name' value='${store.questions[questionNumber].answers[2]}'>${store.questions[questionNumber].answers[2]}</button>
+        <button class='js-button-answer' id='answerFour' name='name' value='${store.questions[questionNumber].answers[3]}'>${store.questions[questionNumber].answers[3]}</button>
       </form>
     </div>
   `,
@@ -133,17 +134,20 @@ function questionScreenTemplate(questionNumber) {
 
 function feedbackScreenTemplate(questionNumber, isCorrect) {
   //this function creates the template for the feedback screen displayed after each question is answered
-  //hands the template to renderScreen 
+  //hands the template to renderScreen
+  if (isCorrect) {
+    store.score++;
+  } 
   return [`
     <div>
-      <p><img src="/${isCorrect ? 'green_check.jpg' : 'red_x.png'}" alt=${isCorrect ? 'Green Checkmark' : 'Red X'}></p>
+      <p><img src="/${isCorrect ? 'img/green_check.jpg' : 'img/red_x.png'}" alt=${isCorrect ? 'Green Checkmark' : 'Red X'}></p>
       <h3>The correct answer is: ${store.questions[questionNumber].correctAnswer}</h3>
       <div>
         <h2>Score:</h3>
         <h4>Right: ${store.score}</h4>
-        <h4>Wrong: ${store.questionNumber - store.score}</h4>
+        <h4>Wrong: ${store.questionNumber - store.score + 1}</h4>
       </div>
-      <a href='end_game_screen.html'><button>Next</button></a>
+      <button class='js-button-next'>Next</button>
     </div>
   `,
   `
@@ -158,13 +162,13 @@ function endScreenTemplate() {
   //passes template to render screen function
   return [`
     <div>
-      <p><img src="/finished_.jpg" alt="Checkered Flags Finish Line"></p>
+      <p><img src="img/finished_.jpg" alt="Checkered Flags Finish Line"></p>
       <div>
         <h2>Score:</h3>
         <h4>Right: ${store.score}</h4>
         <h4>Wrong: ${store.questionNumber - store.score}</h4>
       </div>
-      <a href='index.html'><button>New Game</button></a>
+      <button class='js-button-restart'>New Game</button>
     </div>
   `,
   `
@@ -184,11 +188,65 @@ function renderScreen(template) {
   $('main').html(template[0]);
 }
 
+// Support function.
 
+function getQuestion(questionNumber) {
+  return null;
+}
+
+// Event handler functions.
+
+function eventHandler() {
+  eventNewGame();
+  eventSubmitAnwser();
+  eventNext();
+  eventRestart();
+}
+
+function eventNewGame(){
+  $('body').on('click', '.js-button-new-game', event => {
+    console.log('New game button was clicked');
+    renderScreen(questionScreenTemplate(store.questionNumber));
+    store.quizStarted = true;
+  });
+}
+
+function eventSubmitAnwser() {
+  $('body').on('click', '.js-button-answer', event => {
+    event.preventDefault();
+    let userAnwser = $(event.target).attr('value')
+    console.log(`Clicked an anwser button: ${$(event.target).attr('value')}`);
+    renderScreen(feedbackScreenTemplate(store.questionNumber, userAnwser === store.questions[store.questionNumber].correctAnswer));
+  });
+}
+
+function eventNext() {
+  $('body').on('click', '.js-button-next', event => {
+    console.log('Clicked next button');
+    store.questionNumber++;
+    if(store.questionNumber === store.questions.length) {
+      renderScreen(endScreenTemplate());
+    } else {
+      renderScreen(questionScreenTemplate(store.questionNumber));
+    }
+  });
+}
+
+function eventRestart() {
+  $('body').on('click', '.js-button-restart', event => {
+    store.questionNumber = 0;
+    store.quizStarted = false;
+    store.score = 0;
+    renderScreen(startScreenTemplate());
+  });
+}
 
 
 function executeQuizApp() {
-  renderScreen(questionScreenTemplate(store.questionNumber));
+  if (!store.quizStarted){
+    renderScreen(startScreenTemplate());
+  }
+  eventHandler();
  
 }
 
