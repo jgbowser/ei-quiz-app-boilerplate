@@ -67,10 +67,38 @@ const store = {
 // ability to restart quiz
 
 
-//main event handler//
+function initialRender() {
+ // first function to run after page load.
+ //refrences startScreenTemplate to get HTML to display start screen
+ //runs again at end of quiz when user selects try again
+}
 
-$('main')
+function startScreenTemplate() {
+ //provides HTML template to initial render
+ //This might be unnecessary? could just define initialRender with the start screen HTML because intial render will only ever render the start screen which is static
+}
 
+function questionScreenTemplate() {
+  //this function creates the template for the question strings 
+  //hands template off to the render screen function
+  //probably need to create a seperate function to retrieve correct item <------
+}
+
+function feedbackScreenTemplate() {
+  //this function creates the template for the feedback screen displayed after each question is answered
+  //hands the template to renderScreen 
+}
+
+function endScreenTemplate() {
+  //this function creates the template for the end scree
+  //passes template to render screen function
+}
+
+function renderScreen() {
+  //takes in HTML templates from each template function
+  //adds html to the <main> element of the page
+  //runs each time a new screen is needed
+}
 
 
 
@@ -81,11 +109,12 @@ $('main')
 
 
 function executeQuizApp() {
-function startScreenTemplate() {};
-function questionScreenTemplate() {};
-function feedbackScreenTemplate() {};
-function endScreenTemplate() {};
-function renderScreen() {};
+initialRender();
+startScreenTemplate();
+questionScreenTemplate();
+feedbackScreenTemplate();
+endScreenTemplate();
+renderScreen();
 };
 
 
