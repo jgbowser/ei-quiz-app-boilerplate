@@ -76,12 +76,12 @@ function startScreenTemplate() {
   //This might be unnecessary? could just define initialRender with the start screen HTML because intial render will only ever render the start screen which is static
   return [`
     <div>
-      <p>Basic details/intro about the quiz.</p>
-      <button>New Game</button>
+      <h3>This quiz will test you on strand or obscure facts you might not have known</h3>
+      <button class='new-game-button'>New Game</button>
     </div>
   `,
   `
-    <h1>Shall we player a game?</h1>
+    <h1>Strange Facts Quiz</h1>
   `];
 }
 
@@ -150,20 +150,12 @@ function renderScreen(template) {
 
 
 
-function initialRender() {
-  renderScreen(startScreenTemplate());
-}
-
 
 
 
 
 function executeQuizApp() {
   renderScreen(startScreenTemplate());
-  
-  questionScreenTemplate();
-  feedbackScreenTemplate();
-  endScreenTemplate();
   
 }
 
