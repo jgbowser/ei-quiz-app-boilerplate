@@ -1,38 +1,6 @@
 'use strict';
 
 /**
- * Example store structure
- */
-const store = {
-  // 5 or more questions are required
-  questions: [
-    {
-      question: 'What color is broccoli?',
-      answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
-      ],
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What is the current year?',
-      answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
-      ],
-      correctAnswer: '2019'
-    }
-  ],
-  quizStarted: false,
-  questionNumber: 0,
-  score: 0,
-};
-
-/**
  * 
  * Technical requirements:
  * 
@@ -68,7 +36,63 @@ const store = {
 //overall score at end of quiz correct/incorrect
 // ability to restart quiz
 
-
+const store = {
+  questions: [
+    {
+      question: 'The average person does what 13 times a day?',
+      answers: [
+        'Sneeze',
+        'Use the restroom',
+        'Laughs',
+        'Swear'
+      ],
+      correctAnswer: 'Laughs'
+    },
+    {
+      question: 'In Texas it\'s illegal to swear in front of a what?',
+      answers: [
+        'A corpse',
+        'Children',
+        'Women',
+        'Police Officer'
+      ],
+      correctAnswer: 'A corpse'
+    },
+    {
+      question: 'In Kansas it\'s illegal to eat cherry pie with what?',
+      answers: [
+        'Spork',
+        'Your Hands',
+        'Spinach',
+        'Ice Cream'
+      ],
+      correctAnswer: 'Ice Cream'
+    },
+    {
+      question: 'The average American does what 22 times a day?',
+      answers: [
+        'Swears',
+        'Posts a Tweet',
+        'Swallows a Bug',
+        'Open the Fridge'
+      ],
+      correctAnswer: 'Open the Fridge'
+    },
+    {
+      question: 'In Blythe, CA you can\'t wear cowboy boots unless you own at least 5 what?',
+      answers: [
+        'Head of Cattle',
+        'Guns',
+        'Acres of Land',
+        'Cowboy Hats'
+      ],
+      correctAnswer: 'Head of Cattle'
+    }
+  ],
+  quizStarted: false,
+  questionNumber: 0,
+  score: 0,
+};
 
 
 function startScreenTemplate() {
