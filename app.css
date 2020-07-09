@@ -7,9 +7,16 @@
   *
 */
 
+html {
+  height: 100%;
+  overflow-y: hidden;
+}
+
 body {
+  height: 100%;
   margin: 0;
   font-family: sans-serif;
+  background: linear-gradient(rgb(168, 168, 168), rgb(230, 230, 230));
 }
 
 div {
@@ -19,6 +26,11 @@ div {
   text-align: center;
   align-content: space-between;
 }
+
+div.end-screen {
+  width: 95%;
+}
+
 
 .start-screen-text {
   margin: 0 10px;
@@ -32,6 +44,27 @@ h1 {
   text-align: center;
 }
 
+h1.question-header,
+.feedback-header,
+.results-header {
+  font-size: 22px;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+.score-header {
+  margin: 0;
+  font-size: 25px;
+}
+
+.score-text {
+  margin-bottom: 10px;
+}
+
+.feedback-header {
+  margin-bottom: 30px;
+}
+
 p {
   margin: 0;
   padding: 3em;
@@ -40,17 +73,52 @@ p {
 
 form {
   display: flex;
+  margin-top: 30px;
   flex-direction: column;
   align-self: center;
-  width: 30%;
+  width: 95%;
+  background: transparent;
 }
 
-.new-game-button {
+.new-game-button,
+.button-answer,
+.button-next,
+.endgame-button {
   margin-top: 75px;
   padding: 15px 0;
-  background-color: rgb(0, 255, 0);
+  background-color: rgb(0, 218, 0);
   border: 3px solid green;
   border-radius: 5px;
+  font-weight: 800;
+}
+
+.button-answer,
+.button-next {
+  background-color: rgb(150, 220, 238);
+  border-color: rgb(68, 208, 243);
+  margin: 10px 5px;
+  box-shadow: 1px 3px 10px;
+}
+
+.button-next,
+.endgame-button {
+  background-color: rgb(0, 218, 0);
+  border: 3px solid green;
+}
+
+.endgame-button {
+  width: 95%;
+  align-self: center;
+}
+
+.button-answer:hover {
+  background-color: rgb(68, 208, 243);
+  box-shadow: none;
+}
+
+.button-answer:active {
+  background-color: rgb(68, 208, 243);
+  box-shadow: none;
 }
 
 input {
@@ -64,4 +132,7 @@ input {
 
 img {
   width: 50%;
+  align-self: center;
+  margin-bottom: 10px;
+  padding: 0;
 }

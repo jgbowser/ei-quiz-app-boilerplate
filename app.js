@@ -102,7 +102,7 @@ function startScreenTemplate() {
   return [`
     <div class='start-screen-text'>
       <h3>This quiz will test you on strange or obscure facts you might not have known</h3>
-      <button class='js-button-new-game'>New Game</button>
+      <button class='js-button-new-game new-game-button'>New Game</button>
     </div>
   `,
   `
@@ -118,16 +118,16 @@ function questionScreenTemplate(questionNumber) {
     <div>
       <h3>${store.questions[questionNumber].question}</h3>
       <form>
-        <button class='js-button-answer' id='answerOne' name='name' value='${store.questions[questionNumber].answers[0]}'>${store.questions[questionNumber].answers[0]}</button>
-        <button class='js-button-answer' id='answerTwo' name='name' value='${store.questions[questionNumber].answers[1]}'>${store.questions[questionNumber].answers[1]}</button>
-        <button class='js-button-answer' id='answerThree' name='name' value='${store.questions[questionNumber].answers[2]}'>${store.questions[questionNumber].answers[2]}</button>
-        <button class='js-button-answer' id='answerFour' name='name' value='${store.questions[questionNumber].answers[3]}'>${store.questions[questionNumber].answers[3]}</button>
+        <button class='js-button-answer button-answer' id='answerOne' name='name' value='${store.questions[questionNumber].answers[0]}'>${store.questions[questionNumber].answers[0]}</button>
+        <button class='js-button-answer button-answer' id='answerTwo' name='name' value='${store.questions[questionNumber].answers[1]}'>${store.questions[questionNumber].answers[1]}</button>
+        <button class='js-button-answer button-answer' id='answerThree' name='name' value='${store.questions[questionNumber].answers[2]}'>${store.questions[questionNumber].answers[2]}</button>
+        <button class='js-button-answer button-answer' id='answerFour' name='name' value='${store.questions[questionNumber].answers[3]}'>${store.questions[questionNumber].answers[3]}</button>
       </form>
     </div>
   `,
   `
     <header>
-      <h1>Question ${questionNumber + 1} of ${store.questions.length}</h1>
+      <h1 class='question-header'>Question ${questionNumber + 1} of ${store.questions.length}</h1>
     </header>
   `];
 }
@@ -143,16 +143,16 @@ function feedbackScreenTemplate(questionNumber, isCorrect) {
       <p><img src="/${isCorrect ? 'img/green_check.jpg' : 'img/red_x.png'}" alt=${isCorrect ? 'Green Checkmark' : 'Red X'}></p>
       <h3>${isCorrect ? 'That\'s correct!' : 'The correct answer is: ' + store.questions[questionNumber].correctAnswer}</h3>
       <div>
-        <h2>Score:</h3>
-        <h4>Right: ${store.score}</h4>
-        <h4>Wrong: ${store.questionNumber - store.score + 1}</h4>
+        <h2 class='score-header'>Score:</h2>
+        <h4 class='score-text'>Right: ${store.score}</h4>
+        <h4 class='score-text'>Wrong: ${store.questionNumber - store.score + 1}</h4>
       </div>
-      <button class='js-button-next'>Next</button>
+      <button class='js-button-next button-next'>Next</button>
     </div>
   `,
   `
-    <header
-      <h1>${isCorrect ? 'Correct!' : 'Wrong! :-('}</h1>
+    <header>
+      <h1 class='feedback-header'>${isCorrect ? 'Correct!' : 'Wrong! :-('}</h1>
     </header>
   `];
 }
@@ -162,18 +162,18 @@ function endScreenTemplate() {
   //passes template to render screen function
   return [`
     <div>
-      <p><img src="img/finished_.jpg" alt="Checkered Flags Finish Line"></p>
-      <div>
-        <h2>Score:</h3>
-        <h4>Right: ${store.score}</h4>
-        <h4>Wrong: ${store.questionNumber - store.score}</h4>
+      <img src="img/finished_.png" alt="Checkered Flags Finish Line">
+      <div class'end-screen'>
+        <h2 class='score-header'>Score:</h2>
+        <h4 class='score-text'>Right: ${store.score}</h4>
+        <h4 calss='score-text'>Wrong: ${store.questionNumber - store.score}</h4>
       </div>
-      <button class='js-button-restart'>New Game</button>
+      <button class='js-button-restart endgame-button'>New Game</button>
     </div>
   `,
   `
-    <header
-      <h1>Your Results</h1>
+    <header>
+      <h1 class='results-header'>Your Results</h1>
     </header>
   `];
 }
