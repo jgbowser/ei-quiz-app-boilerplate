@@ -29,7 +29,7 @@ const store = {
   ],
   quizStarted: false,
   questionNumber: 0,
-  score: 0
+  score: 0,
 };
 
 /**
@@ -89,23 +89,27 @@ function startScreenTemplate() {
   `];
 }
 
-function questionScreenTemplate() {
+function questionScreenTemplate(questionNumber) {
   //this function creates the template for the question strings 
   //hands template off to the render screen function
   //probably need to create a seperate function to retrieve correct item <------
-  return `
+  return [`
     <div>
-      <h1>Question 2 of 5</h1>
-      <h3>What's your name?</h3>
+      <h3>${store.questions[questionNumber].question}</h3>
       <form>
-        <label for='answerOne'><input type='radio' id='answerOne' name='name' value='Bob'>Bob</label>
-        <label for='answerTwo'><input type='radio' id='answerTwo' name='name' value='John'>John</label>
-        <label for='answerThree'><input type='radio' id='answerThree' name='name' value='Gill'>Gill</label>
-        <label for='answerFour'><input type='radio' id='answerFour' name='name' value='Jack'>Jack</label>
+        <button id='answerOne' name='name' value='${store.questions[questionNumber].answers[0]}'>${store.questions[questionNumber].answers[0]}</button>
+        <button id='answerTwo' name='name' value='${store.questions[questionNumber].answers[1]}'>${store.questions[questionNumber].answers[1]}</button>
+        <button id='answerThree' name='name' value='${store.questions[questionNumber].answers[2]}'>${store.questions[questionNumber].answers[2]}</button>
+        <button id='answerFour' name='name' value='${store.questions[questionNumber].answers[3]}'>${store.questions[questionNumber].answers[3]}</button>
       </form>
       <a href='/feedback_screen.html'><button>Submit</button></a>
     </div>
-  `;
+  `,
+  `
+    <header
+      <h1>Question ${questionNumber} of ${store.questions.length}</h1>
+    </header>
+  `];
 }
 
 function feedbackScreenTemplate() {
@@ -145,6 +149,7 @@ function endScreenTemplate() {
 
 function renderScreen(template) {
   //takes in HTML templates from each template function
+  //add htmle to the <header> element of the page and
   //adds html to the <main> element of the page
   //runs each time a new screen is needed
   $('header').html(template[1]);
@@ -153,21 +158,9 @@ function renderScreen(template) {
 
 
 
-function initialRender() {
-  renderScreen(startScreenTemplate());
-}
-
-
-
-
 
 function executeQuizApp() {
-  initialRender();
-  startScreenTemplate();
-  questionScreenTemplate();
-  feedbackScreenTemplate();
-  endScreenTemplate();
-  renderScreen();
+  renderScreen(startScreenTemplate());
 }
 
 
