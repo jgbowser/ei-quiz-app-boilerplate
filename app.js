@@ -98,12 +98,11 @@ function questionScreenTemplate(questionNumber) {
         <button id='answerThree' name='name' value='${store.questions[questionNumber].answers[2]}'>${store.questions[questionNumber].answers[2]}</button>
         <button id='answerFour' name='name' value='${store.questions[questionNumber].answers[3]}'>${store.questions[questionNumber].answers[3]}</button>
       </form>
-      <a href='/feedback_screen.html'><button>Submit</button></a>
     </div>
   `,
   `
     <header
-      <h1>Question ${questionNumber} of ${store.questions.length}</h1>
+      <h1>Question ${questionNumber + 1} of ${store.questions.length}</h1>
     </header>
   `];
 }
@@ -146,7 +145,7 @@ function endScreenTemplate() {
   `,
   `
     <header
-      <h1>Results</h1>
+      <h1>Your Results</h1>
     </header>
   `];
 }
