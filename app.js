@@ -111,14 +111,14 @@ function questionScreenTemplate(questionNumber) {
 function feedbackScreenTemplate(questionNumber, isCorrect) {
   //this function creates the template for the feedback screen displayed after each question is answered
   //hands the template to renderScreen 
-  return `
+  return [`
     <div>
       <p><img src="/${isCorrect ? 'green_check.jpg' : 'red_x.png'}" alt=${isCorrect ? 'Green Checkmark' : 'Red X'}></p>
       <h3>The correct answer is: ${store.questions[questionNumber].correctAnswer}</h3>
       <div>
         <h2>Score:</h3>
-        <h4>Right: 3</h4>
-        <h4>Wrong: 5</h4>
+        <h4>Right: ${store.score}</h4>
+        <h4>Wrong: ${store.questionNumber - store.score}</h4>
       </div>
       <a href='end_game_screen.html'><button>Next</button></a>
     </div>
@@ -133,18 +133,22 @@ function feedbackScreenTemplate(questionNumber, isCorrect) {
 function endScreenTemplate() {
   //this function creates the template for the end scree
   //passes template to render screen function
-  return `
+  return [`
     <div>
-      <h1>Results</h1>
-      <p><img src="/finished_.jpg" alt="Red X"></p>
+      <p><img src="/finished_.jpg" alt="Checkered Flags Finish Line"></p>
       <div>
         <h2>Score:</h3>
-        <h4>Right: 3</h4>
-        <h4>Wrong: 5</h4>
+        <h4>Right: ${store.score}</h4>
+        <h4>Wrong: ${store.questionNumber - store.score}</h4>
       </div>
       <a href='index.html'><button>New Game</button></a>
     </div>
-  `;
+  `,
+  `
+    <header
+      <h1>Results</h1>
+    </header>
+  `];
 }
 
 
