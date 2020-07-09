@@ -69,11 +69,7 @@ const store = {
 // ability to restart quiz
 
 
-//don't need this function initialRender() {
-//first function to run after page load.
-//refrences startScreenTemplate to get HTML to display start screen
-//runs again at end of quiz when user selects try again
-//}
+
 
 function startScreenTemplate() {
   //provides HTML template to initial render
@@ -142,9 +138,7 @@ function endScreenTemplate() {
 }
 
 function renderScreen() {
-  //takes in HTML templates from each template function
-  //adds html to the <main> element of the page
-  //runs each time a new screen is needed
+
 }
 
 
@@ -156,12 +150,12 @@ function renderScreen() {
 
 
 function executeQuizApp() {
-  initialRender();
-  startScreenTemplate();
+  renderScreen(startScreenTemplate());
+  
   questionScreenTemplate();
   feedbackScreenTemplate();
   endScreenTemplate();
-  renderScreen();
+  
 }
 
 
