@@ -102,8 +102,8 @@ function questionScreenTemplate(questionNumber) {
     </div>
   `,
   `
-    <header
-      <h1>Question ${questionNumber} of ${store.questions.length}</h1>
+    <header>
+      <h1>Question ${questionNumber + 1} of ${store.questions.length}</h1>
     </header>
   `];
 }
@@ -111,7 +111,7 @@ function questionScreenTemplate(questionNumber) {
 function feedbackScreenTemplate(questionNumber, isCorrect) {
   //this function creates the template for the feedback screen displayed after each question is answered
   //hands the template to renderScreen 
-  return `
+  return [`
     <div>
       <p><img src="/${isCorrect ? 'green_check.jpg' : 'red_x.png'}" alt=${isCorrect ? 'Green Checkmark' : 'Red X'}></p>
       <h3>The correct answer is: ${store.questions[questionNumber].correctAnswer}</h3>
@@ -161,7 +161,8 @@ function renderScreen(template) {
 
 
 function executeQuizApp() {
-  renderScreen(startScreenTemplate());
+  renderScreen(questionScreenTemplate(store.questionNumber));
+ 
 }
 
 
