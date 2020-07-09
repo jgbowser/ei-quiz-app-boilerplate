@@ -78,13 +78,15 @@ const store = {
 function startScreenTemplate() {
   //provides HTML template to initial render
   //This might be unnecessary? could just define initialRender with the start screen HTML because intial render will only ever render the start screen which is static
-  return `
+  return [`
     <div>
-      <h1>Shall we play a game?</h1>
       <p>Basic details/intro about the quiz.</p>
       <button>New Game</button>
     </div>
-  `;
+  `,
+  `
+    <h1>Shall we player a game?</h1>
+  `];
 }
 
 function questionScreenTemplate() {
@@ -141,15 +143,19 @@ function endScreenTemplate() {
   `;
 }
 
-function renderScreen() {
+function renderScreen(template) {
   //takes in HTML templates from each template function
   //adds html to the <main> element of the page
   //runs each time a new screen is needed
+  $('header').html(template[1]);
+  $('main').html(template[0]);
 }
 
 
 
-
+function initialRender() {
+  renderScreen(startScreenTemplate());
+}
 
 
 
