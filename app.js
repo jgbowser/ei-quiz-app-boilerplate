@@ -140,7 +140,7 @@ function feedbackScreenTemplate(questionNumber, isCorrect) {
   } 
   return [`
     <div>
-      <p><img src="${isCorrect ? 'img/green_check.png' : 'img/red_x.png'}" alt=${isCorrect ? 'Green Checkmark' : 'Red X'}></p>
+      <img src="${isCorrect ? 'img/green_check.png' : 'img/red_x.png'}" alt=${isCorrect ? 'Green Checkmark' : 'Red X'}>
       <h3>${isCorrect ? 'That\'s correct!' : 'The correct answer is: ' + store.questions[questionNumber].correctAnswer}</h3>
       <div>
         <h2 class='score-header'>Score:</h2>
